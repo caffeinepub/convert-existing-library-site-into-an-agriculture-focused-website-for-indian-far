@@ -1,0 +1,229 @@
+{
+  "kind": "build_request",
+  "title": "Convert existing library site into an agriculture-focused website for Indian farmers",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Rebrand the application from a library website into an agriculture-focused website for Indian farmers by updating the public homepage content, navigation labels, and icons to match the new domain (weather, crop advisory, mandi prices, government schemes, soil health, and expert support).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Creat a website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header no longer shows library-specific branding (e.g., 'Community Library' and book icon) and instead shows agriculture-focused branding and navigation.",
+        "Public homepage no longer contains book search/library events/library-specific copy and instead presents agriculture modules.",
+        "All user-facing text is in English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a coherent visual theme suitable for an agriculture website (earthy greens, soil browns, high-contrast sunlight-readable layout, rounded cards) and apply it consistently across the public site and admin dashboard without changing any read-only UI component sources under frontend/src/components/ui.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Theme:\n\nEarthy green, soil brown, sky blue accents\n\nWorks well in sunlight (high contrast)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI uses a consistent agriculture-inspired palette and typography across pages.",
+        "Pages remain readable in bright conditions (sufficient contrast for text/buttons).",
+        "No edits are made inside frontend/src/components/ui (components are only composed/used)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add public-facing modules/pages (or sections) for: Weather (current + 7-day), Crop Advisory (crop selection + step-by-step guidance), Mandi Prices (daily prices + comparison view), Government Schemes (list + details), Soil Health (store and view soil test records), and Expert Support (submit questions with optional attachments).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "🎯 Main Features:\nWeather Updates\n\nCrop Advisory\n\nMarket Prices (Mandi Bhav)\n\nGovernment Schemes\n\nSoil Health Tracker\n\nExpert Chat Support"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Public site provides clear navigation to each module (Weather, Crop Advisory, Mandi Prices, Government Schemes, Soil Health, Expert Support).",
+        "Each module has at least a list view and a detail view (or an equivalent single-page layout with expandable details).",
+        "All displayed data comes from backend APIs (seed/sample data is acceptable initially as long as it is stored/served by the canister)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Replace the current library-oriented backend models and APIs with agriculture-domain models and CRUD/query endpoints for: farmer profile (location, land size, preferred language), crops/advisories, mandi prices, government schemes, soil reports, and expert queries. Ensure authorization rules are appropriate (public read for informational content; authenticated users for submitting soil reports and expert queries; admin-only for content management).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Farmer profile (land size, crop type, location)\n\nMarket Prices (Mandi Bhav)\n\nGovernment Schemes\n\nSoil Health Tracker\n\nExpert Chat Support"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes query methods for public content retrieval (e.g., list crops, list advisories, list mandi prices, list schemes).",
+        "Backend exposes authenticated methods for user submissions (save farmer profile, create soil report, create expert query).",
+        "Backend exposes admin-only methods for creating/editing/deleting agriculture content items (advisories, mandi prices, schemes, reference crop data).",
+        "Unauthorized calls trap with clear errors consistent with existing authorization patterns in backend/main.mo."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Update the admin dashboard to manage agriculture content instead of library entities, including CRUD screens for crop advisories, mandi prices, government schemes, and review/response workflow for expert queries submitted by users.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Expert Chat Support\n\nAsk agriculture experts questions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin dashboard tabs/sections no longer reference books/members/borrowing/library events and instead manage agriculture content types.",
+        "Admins can create, edit, and delete advisories, mandi price entries, and schemes.",
+        "Admins can view expert queries, add a response, and mark a query as resolved (status visible to users)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement multilingual support for English and Hindi with a language selector and persistent preference (store in the authenticated user's profile and also cache locally for quick load). Ensure all core public module labels and key UI strings have translations.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "support Hindi and English languages"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Language selector is available and switching language updates visible UI strings immediately.",
+        "Selected language persists across refreshes and sign-in/out (local cache) and is saved to the user's backend profile when authenticated.",
+        "At minimum, primary navigation/module titles, key buttons, and empty/error states are translated for English and Hindi."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add low-bandwidth/offline-friendly behavior on the frontend: cache the last successfully loaded module data in local storage (or equivalent client storage) and show an 'Offline / Showing cached data' indicator when network/actor calls fail; allow users to view cached weather/advisories/prices/schemes while offline.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "The app should work in low internet areas",
+          "Offline Mode\n\nSave important information offline"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When the app cannot fetch fresh data, it renders the most recently cached data for each module and indicates that cached data is being shown.",
+        "When connectivity returns, the UI refreshes to show current data and clears the offline indicator.",
+        "Caching does not require any changes to immutable auth hooks; it is implemented in page/components and/or new hooks."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement a disease identification workflow as a user-facing 'Upload Photo' feature within Crop Advisory that allows attaching an image to an expert query (for manual review), storing the image as frontend-provided data (e.g., base64) associated with the query in the backend, and displaying it to admins for response.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Disease identification with image upload feature"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can select an image file and submit it alongside an expert query from the Crop Advisory module.",
+        "The submitted query (including attached image data) is persisted by the backend and retrievable by admins.",
+        "Admins can view the image attachment when responding to the query.",
+        "If image size exceeds a defined limit, the UI prevents submission and shows a clear error message."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Update React Query hooks (frontend/src/hooks/useQueries.ts) to remove library-specific queries/mutations and replace them with agriculture-domain hooks aligned with the new backend APIs, then refactor pages/components to use the new hooks.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Creat a website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No remaining usages of library hooks like useSearchBooks/useGetUpcomingEvents/useGetLibraryInformation in the agriculture UI.",
+        "All new hooks have stable query keys and properly invalidate relevant caches on mutation success.",
+        "Application compiles with updated generated backend types and no dead code paths referencing removed library types."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Provide a data migration strategy for upgrading from the existing library canister state to the new agriculture schema. If old state cannot be meaningfully migrated, implement a conditional migration that safely resets/initializes new state while preserving authorization/admin setup where possible.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Creat a website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A backend/migration.mo is added/updated only if required by the platform's upgrade policy and existing stable state constraints.",
+        "After upgrade, the canister initializes with valid empty (or seeded) agriculture data structures and does not trap on startup.",
+        "Admin authorization remains functional after migration (admin can access the admin dashboard and manage content)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo; do not introduce multiple backend services.",
+    "Do not edit immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, and any sources under frontend/src/components/ui.",
+    "Authentication must use Internet Identity (mobile OTP login is not supported on this platform).",
+    "Use English for any user-facing text in the build request; implement UI translations for Hindi/English inside the app as specified."
+  ],
+  "nonGoals": [
+    "Integrating third-party OTP/SMS authentication providers (not supported).",
+    "Real-time chat via WebSockets or push notifications (not supported).",
+    "ML-based automated disease detection (e.g., TensorFlow/OpenAI). The scope is limited to image upload + manual expert review workflow.",
+    "GPS/maps-based nearby mandi location features.",
+    "External database or non-Motoko backend services."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Agriculture hero photo illustration of an Indian farm field at sunrise (farm-hero.dim_1600x900.jpg)",
+      "Simple flat logo mark combining a leaf, sun, and field lines (agri-logo.dim_512x512.png)",
+      "Section header illustration showing crops, soil layers, and weather icons in a clean flat style (agri-sections-header.dim_1200x400.png)"
+    ],
+    "edits": [
+      "Replace library exterior photo with an Indian farm field at sunrise (library-exterior.dim_800x600.jpg > farm-hero.dim_800x600.jpg)",
+      "Replace library interior photo with an agriculture-themed illustration of farmers using a phone in a field (library-interior.dim_800x600.jpg > farmers-using-app.dim_800x600.jpg)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [
+      "Build an agriculture-focused website for Indian farmers with weather, crop advisory, mandi prices, government schemes, soil health tracking, and expert support."
+    ],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Prefer offline/low-bandwidth-friendly UX.",
+      "Support Hindi and English."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build an agriculture-focused digital platform (website) for Indian farmers, featuring weather, crop advisory, mandi prices, government schemes, soil health tracking, expert support, multilingual (Hindi/English), and offline/low-bandwidth-friendly UX.",
+  "architectural_notes": [
+    "Target audience: Indian farmers; prioritize low-bandwidth/offline-friendly UX and Android-first considerations.",
+    "Core modules: weather forecasts + alerts, crop advisory + disease detection via image upload, mandi/market prices, government schemes, soil health records + recommendations, expert chat (text/voice).",
+    "Account requirements: secure login via mobile OTP; farmer profile includes land size, crop type, and location.",
+    "Localization: support Hindi and English (option to extend to regional languages)."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Agriculture hero photo illustration of an Indian farm field at sunrise (farm-hero.dim_1600x900.jpg)\n- Simple flat logo mark combining a leaf, sun, and field lines (agri-logo.dim_512x512.png)\n- Section header illustration showing crops, soil layers, and weather icons in a clean flat style (agri-sections-header.dim_1200x400.png)\n\n## Edit Images\n- Replace library exterior photo with an Indian farm field at sunrise (library-exterior.dim_800x600.jpg > farm-hero.dim_800x600.jpg)\n- Replace library interior photo with an agriculture-themed illustration of farmers using a phone in a field (library-interior.dim_800x600.jpg > farmers-using-app.dim_800x600.jpg)",
+  "existing_features": [
+    {
+      "id": "feature-rebrand-the-application-from-a-library-website-into-an-agriculture-focused-website-for-indian-farmers-by-updating-the-public-homepage-content-navigation-labels-and-icons-to-match-the-new-domain-weather-crop-advisory-mandi-prices-government-schemes-soil-health-and-expert-support",
+      "title": "Rebrand the application from a library website into an agriculture-focused website for Indian farmers by updating the public homepage content, navigation labels, and icons to match the new domain (weather, crop advisory, mandi prices, government schemes, soil health, and expert support).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-coherent-visual-theme-suitable-for-an-agriculture-website-earthy-greens-soil-browns-high-contrast-sunlight-readable-layout-rounded-cards-and-apply-it-consistently-across-the-public-site-and-admin-dashboard-without-changing-any-read-only-ui-component-sources-under-frontend-src-components-ui",
+      "title": "Implement a coherent visual theme suitable for an agriculture website (earthy greens, soil browns, high-contrast sunlight-readable layout, rounded cards) and apply it consistently across the public site and admin dashboard without changing any read-only UI component sources under frontend/src/components/ui.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-public-facing-modules-pages-or-sections-for-weather-current-7-day-crop-advisory-crop-selection-step-by-step-guidance-mandi-prices-daily-prices-comparison-view-government-schemes-list-details-soil-health-store-and-view-soil-test-records-and-expert-support-submit-questions-with-optional-attachments",
+      "title": "Add public-facing modules/pages (or sections) for: Weather (current + 7-day), Crop Advisory (crop selection + step-by-step guidance), Mandi Prices (daily prices + comparison view), Government Schemes (list + details), Soil Health (store and view soil test records), and Expert Support (submit questions with optional attachments).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-admin-dashboard-to-manage-agriculture-content-instead-of-library-entities-including-crud-screens-for-crop-advisories-mandi-prices-government-schemes-and-review-response-workflow-for-expert-queries-submitted-by-users",
+      "title": "Update the admin dashboard to manage agriculture content instead of library entities, including CRUD screens for crop advisories, mandi prices, government schemes, and review/response workflow for expert queries submitted by users.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-multilingual-support-for-english-and-hindi-with-a-language-selector-and-persistent-preference-store-in-the-authenticated-user-s-profile-and-also-cache-locally-for-quick-load-ensure-all-core-public-module-labels-and-key-ui-strings-have-translations",
+      "title": "Implement multilingual support for English and Hindi with a language selector and persistent preference (store in the authenticated user's profile and also cache locally for quick load). Ensure all core public module labels and key UI strings have translations.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-low-bandwidth-offline-friendly-behavior-on-the-frontend-cache-the-last-successfully-loaded-module-data-in-local-storage-or-equivalent-client-storage-and-show-an-offline-showing-cached-data-indicator-when-network-actor-calls-fail-allow-users-to-view-cached-weather-advisories-prices-schemes-while-offline",
+      "title": "Add low-bandwidth/offline-friendly behavior on the frontend: cache the last successfully loaded module data in local storage (or equivalent client storage) and show an 'Offline / Showing cached data' indicator when network/actor calls fail; allow users to view cached weather/advisories/prices/schemes while offline.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-disease-identification-workflow-as-a-user-facing-upload-photo-feature-within-crop-advisory-that-allows-attaching-an-image-to-an-expert-query-for-manual-review-storing-the-image-as-frontend-provided-data-e-g-base64-associated-with-the-query-in-the-backend-and-displaying-it-to-admins-for-response",
+      "title": "Implement a disease identification workflow as a user-facing 'Upload Photo' feature within Crop Advisory that allows attaching an image to an expert query (for manual review), storing the image as frontend-provided data (e.g., base64) associated with the query in the backend, and displaying it to admins for response.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-react-query-hooks-frontend-src-hooks-usequeries-ts-to-remove-library-specific-queries-mutations-and-replace-them-with-agriculture-domain-hooks-aligned-with-the-new-backend-apis-then-refactor-pages-components-to-use-the-new-hooks",
+      "title": "Update React Query hooks (frontend/src/hooks/useQueries.ts) to remove library-specific queries/mutations and replace them with agriculture-domain hooks aligned with the new backend APIs, then refactor pages/components to use the new hooks.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create an agriculture-focused website for Indian farmers with modules for weather, crop advisory (incl. disease image upload), mandi prices, government schemes, soil health tracking, expert chat/support, secure OTP login, multilingual support, and offline/low-bandwidth UX.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Replace the current library-oriented backend models and APIs with agriculture-domain models and CRUD/query endpoints for: farmer profile (location, land size, preferred language), crops/advisories, mandi prices, government schemes, soil reports, and expert queries. Ensure authorization rules are appropriate (public read for informational content; authenticated users for submitting soil reports and expert queries; admin-only for content management).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Provide a data migration strategy for upgrading from the existing library canister state to the new agriculture schema. If old state cannot be meaningfully migrated, implement a conditional migration that safely resets/initializes new state while preserving authorization/admin setup where possible.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Convert existing library site into an agriculture-focused website for Indian farmers",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,194 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-rebrand-the-application-from-a-library-website-into-an-agriculture-focused-website-for-indian-farmers-by-updating-the-public-homepage-content-navigation-labels-and-icons-to-match-the-new-domain-weather-crop-advisory-mandi-prices-government-schemes-soil-health-and-expert-support",
+      "featureTitle": "Rebrand the application from a library website into an agriculture-focused website for Indian farmers by updating the public homepage content, navigation labels, and icons to match the new domain (weather, crop advisory, mandi prices, government schemes, soil health, and expert support).",
+      "files": [
+        "frontend/src/components/Footer.tsx",
+        "frontend/src/components/Header.tsx",
+        "frontend/src/pages/PublicHome.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-coherent-visual-theme-suitable-for-an-agriculture-website-earthy-greens-soil-browns-high-contrast-sunlight-readable-layout-rounded-cards-and-apply-it-consistently-across-the-public-site-and-admin-dashboard-without-changing-any-read-only-ui-component-sources-under-frontend-src-components-ui",
+      "featureTitle": "Implement a coherent visual theme suitable for an agriculture website (earthy greens, soil browns, high-contrast sunlight-readable layout, rounded cards) and apply it consistently across the public site and admin dashboard without changing any read-only UI component sources under frontend/src/components/ui.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/AdminDashboard.tsx",
+        "frontend/src/pages/PublicHome.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-public-facing-modules-pages-or-sections-for-weather-current-7-day-crop-advisory-crop-selection-step-by-step-guidance-mandi-prices-daily-prices-comparison-view-government-schemes-list-details-soil-health-store-and-view-soil-test-records-and-expert-support-submit-questions-with-optional-attachments",
+      "featureTitle": "Add public-facing modules/pages (or sections) for: Weather (current + 7-day), Crop Advisory (crop selection + step-by-step guidance), Mandi Prices (daily prices + comparison view), Government Schemes (list + details), Soil Health (store and view soil test records), and Expert Support (submit questions with optional attachments).",
+      "files": [
+        "frontend/src/components/Header.tsx",
+        "frontend/src/components/public/CropAdvisoryModule.tsx",
+        "frontend/src/components/public/ExpertSupportModule.tsx",
+        "frontend/src/components/public/GovernmentSchemesModule.tsx",
+        "frontend/src/components/public/MandiPricesModule.tsx",
+        "frontend/src/components/public/SoilHealthModule.tsx",
+        "frontend/src/components/public/WeatherModule.tsx",
+        "frontend/src/pages/PublicHome.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-admin-dashboard-to-manage-agriculture-content-instead-of-library-entities-including-crud-screens-for-crop-advisories-mandi-prices-government-schemes-and-review-response-workflow-for-expert-queries-submitted-by-users",
+      "featureTitle": "Update the admin dashboard to manage agriculture content instead of library entities, including CRUD screens for crop advisories, mandi prices, government schemes, and review/response workflow for expert queries submitted by users.",
+      "files": [
+        "frontend/src/components/admin/CropAdvisoriesManagement.tsx",
+        "frontend/src/components/admin/ExpertQueriesManagement.tsx",
+        "frontend/src/components/admin/GovernmentSchemesManagement.tsx",
+        "frontend/src/components/admin/MandiPricesManagement.tsx",
+        "frontend/src/pages/AdminDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-multilingual-support-for-english-and-hindi-with-a-language-selector-and-persistent-preference-store-in-the-authenticated-user-s-profile-and-also-cache-locally-for-quick-load-ensure-all-core-public-module-labels-and-key-ui-strings-have-translations",
+      "featureTitle": "Implement multilingual support for English and Hindi with a language selector and persistent preference (store in the authenticated user's profile and also cache locally for quick load). Ensure all core public module labels and key UI strings have translations.",
+      "files": [
+        "frontend/src/components/Header.tsx",
+        "frontend/src/components/ProfileSetupModal.tsx",
+        "frontend/src/hooks/useLanguagePreference.ts",
+        "frontend/src/i18n/I18nProvider.tsx",
+        "frontend/src/i18n/strings.ts",
+        "frontend/src/pages/AdminDashboard.tsx",
+        "frontend/src/pages/PublicHome.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-low-bandwidth-offline-friendly-behavior-on-the-frontend-cache-the-last-successfully-loaded-module-data-in-local-storage-or-equivalent-client-storage-and-show-an-offline-showing-cached-data-indicator-when-network-actor-calls-fail-allow-users-to-view-cached-weather-advisories-prices-schemes-while-offline",
+      "featureTitle": "Add low-bandwidth/offline-friendly behavior on the frontend: cache the last successfully loaded module data in local storage (or equivalent client storage) and show an 'Offline / Showing cached data' indicator when network/actor calls fail; allow users to view cached weather/advisories/prices/schemes while offline.",
+      "files": [
+        "frontend/src/components/OfflineIndicator.tsx",
+        "frontend/src/components/public/CropAdvisoryModule.tsx",
+        "frontend/src/components/public/GovernmentSchemesModule.tsx",
+        "frontend/src/components/public/MandiPricesModule.tsx",
+        "frontend/src/components/public/WeatherModule.tsx",
+        "frontend/src/utils/offlineCache.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-disease-identification-workflow-as-a-user-facing-upload-photo-feature-within-crop-advisory-that-allows-attaching-an-image-to-an-expert-query-for-manual-review-storing-the-image-as-frontend-provided-data-e-g-base64-associated-with-the-query-in-the-backend-and-displaying-it-to-admins-for-response",
+      "featureTitle": "Implement a disease identification workflow as a user-facing 'Upload Photo' feature within Crop Advisory that allows attaching an image to an expert query (for manual review), storing the image as frontend-provided data (e.g., base64) associated with the query in the backend, and displaying it to admins for response.",
+      "files": [
+        "frontend/src/components/admin/ExpertQueriesManagement.tsx",
+        "frontend/src/components/public/CropAdvisoryModule.tsx",
+        "frontend/src/components/public/ExpertSupportModule.tsx",
+        "frontend/src/utils/imageAttachment.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-react-query-hooks-frontend-src-hooks-usequeries-ts-to-remove-library-specific-queries-mutations-and-replace-them-with-agriculture-domain-hooks-aligned-with-the-new-backend-apis-then-refactor-pages-components-to-use-the-new-hooks",
+      "featureTitle": "Update React Query hooks (frontend/src/hooks/useQueries.ts) to remove library-specific queries/mutations and replace them with agriculture-domain hooks aligned with the new backend APIs, then refactor pages/components to use the new hooks.",
+      "files": [
+        "frontend/src/components/ProfileSetupModal.tsx",
+        "frontend/src/components/admin/BooksManagement.tsx",
+        "frontend/src/components/admin/BorrowingManagement.tsx",
+        "frontend/src/components/admin/EventsManagement.tsx",
+        "frontend/src/components/admin/LibrarySettings.tsx",
+        "frontend/src/components/admin/MembersManagement.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/AdminDashboard.tsx",
+        "frontend/src/pages/PublicHome.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

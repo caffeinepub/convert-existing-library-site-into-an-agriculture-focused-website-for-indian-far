@@ -1,2 +1,3 @@
-# convert-existing-library-site-into-an-agriculture-focused-website-for-indian-far
-Exported from Caffeine project: Convert existing library site into an agriculture-focused website for Indian farmers
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

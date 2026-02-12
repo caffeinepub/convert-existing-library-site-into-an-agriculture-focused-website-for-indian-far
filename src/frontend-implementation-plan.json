@@ -1,0 +1,356 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Rebrand and extend the existing site into an agriculture portal for Indian farmers (frontend-only)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Rebrand public-facing UI from library to agriculture portal with updated homepage content, navigation, labels, and icons (English text).",
+      "acceptanceCriteria": [
+        "Header no longer shows library-specific branding (e.g., 'Community Library' and book icon) and instead shows agriculture-focused branding and navigation.",
+        "Public homepage no longer contains book search/library events/library-specific copy and instead presents agriculture modules.",
+        "All user-facing text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Replace library branding (title/icon) with agriculture branding (use generated logo at frontend/public/assets/generated/agri-logo.dim_512x512.png), update nav labels to Weather, Crop Advisory, Mandi Prices, Government Schemes, Soil Health, Expert Support, and swap library icons to agriculture-appropriate lucide icons. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PublicHome.tsx",
+          "operation": "modify",
+          "description": "Rewrite homepage sections to be agriculture-focused: hero + module cards/sections for Weather, Crop Advisory, Mandi Prices, Government Schemes, Soil Health, Expert Support; remove all book search/events/contact-library copy. Wire in hero/section header images from frontend/public/assets/generated/farm-hero.dim_1600x900.jpg and frontend/public/assets/generated/agri-sections-header.dim_1200x400.png, and apply image edits using frontend/public/assets/generated/farm-hero.dim_800x600.jpg and frontend/public/assets/generated/farmers-using-app.dim_800x600.jpg. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Update footer branding text to match the agriculture portal (remove library-specific wording if any and keep English). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/assets/generated/farm-hero.dim_1600x900.jpg",
+          "operation": "create",
+          "description": "Add generated asset: Agriculture hero photo illustration of an Indian farm field at sunrise. This is a generated static asset to be referenced by the UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/agri-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add generated asset: Simple flat logo mark combining a leaf, sun, and field lines. This is a generated static asset to be referenced by the UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/agri-sections-header.dim_1200x400.png",
+          "operation": "create",
+          "description": "Add generated asset: Section header illustration showing crops, soil layers, and weather icons. This is a generated static asset to be referenced by the UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/farm-hero.dim_800x600.jpg",
+          "operation": "create",
+          "description": "Add generated asset to replace prior library exterior image usage (edited requirement). This is a generated static asset to be referenced by the UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/farmers-using-app.dim_800x600.jpg",
+          "operation": "create",
+          "description": "Add generated asset to replace prior library interior image usage (edited requirement). This is a generated static asset to be referenced by the UI."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Apply an agriculture visual theme (earthy greens/browns, high contrast, rounded cards) consistently without editing frontend/src/components/ui sources.",
+      "acceptanceCriteria": [
+        "UI uses a consistent agriculture-inspired palette and typography across pages.",
+        "Pages remain readable in bright conditions (sufficient contrast for text/buttons).",
+        "No edits are made inside frontend/src/components/ui (components are only composed/used)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global CSS variables (primary/secondary/accent/background/foreground/muted/ring) to an agriculture palette (earthy greens, soil browns, sky-blue accents) with high-contrast readable values; keep rounded feel via --radius. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Optionally extend Tailwind theme tokens (if needed) to support consistent agriculture accents (e.g., additional semantic colors or shadows) without changing any shadcn/ui sources. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PublicHome.tsx",
+          "operation": "modify",
+          "description": "Apply consistent layout patterns (rounded cards, sunlight-readable contrast, spacing) using existing shadcn/ui components and Tailwind utilities (do not edit frontend/src/components/ui). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/AdminDashboard.tsx",
+          "operation": "modify",
+          "description": "Apply the same theme/styling patterns to the admin dashboard layout using existing shadcn/ui components and Tailwind utilities (do not edit frontend/src/components/ui). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add public modules for Weather, Crop Advisory, Mandi Prices, Government Schemes, Soil Health, and Expert Support with list/detail UX wired to backend-served data.",
+      "acceptanceCriteria": [
+        "Public site provides clear navigation to each module (Weather, Crop Advisory, Mandi Prices, Government Schemes, Soil Health, Expert Support).",
+        "Each module has at least a list view and a detail view (or an equivalent single-page layout with expandable details).",
+        "All displayed data comes from backend APIs (seed/sample data is acceptable initially as long as it is stored/served by the canister)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PublicHome.tsx",
+          "operation": "modify",
+          "description": "Restructure the public homepage into an agriculture portal with module navigation and per-module sections. Each section must provide list + expandable/detail view patterns (e.g., selected item panel/accordion) for Weather, Crop Advisory, Mandi Prices (including comparison view), Government Schemes, Soil Health, and Expert Support. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/WeatherModule.tsx",
+          "operation": "create",
+          "description": "Create Weather module UI (current + 7-day layout) with list/detail interaction and offline-friendly rendering. Integrate via new React Query hook(s) that call backend capabilities when available. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "operation": "create",
+          "description": "Create Crop Advisory module UI: crop advisory list + detail (step-by-step guidance), plus entry points to submit an expert question (and attachment per REQ-8). Use existing shadcn/ui components for cards/forms/dialogs. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/MandiPricesModule.tsx",
+          "operation": "create",
+          "description": "Create Mandi Prices module UI: daily prices list + detail, and a comparison view (e.g., compare two selected price entries). Wire to agriculture React Query hooks. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/GovernmentSchemesModule.tsx",
+          "operation": "create",
+          "description": "Create Government Schemes module UI: list of schemes + detail view with eligibility/description. Wire to agriculture React Query hooks. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/SoilHealthModule.tsx",
+          "operation": "create",
+          "description": "Create Soil Health module UI: list + detail for soil reports and a submission form for authenticated users. Wire to agriculture React Query hooks and show a login prompt for guests. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/ExpertSupportModule.tsx",
+          "operation": "create",
+          "description": "Create Expert Support module UI: submit questions (with optional attachment per REQ-8), list previous submissions, and show response/resolution status when available. Wire to agriculture React Query hooks. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Add public navigation controls (buttons/links) that scroll to or switch between the module sections created in PublicHome (Weather, Crop Advisory, Mandi Prices, Government Schemes, Soil Health, Expert Support). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Update admin dashboard UI to manage agriculture content (advisories, mandi prices, schemes) and expert query review/response workflow.",
+      "acceptanceCriteria": [
+        "Admin dashboard tabs/sections no longer reference books/members/borrowing/library events and instead manage agriculture content types.",
+        "Admins can create, edit, and delete advisories, mandi price entries, and schemes.",
+        "Admins can view expert queries, add a response, and mark a query as resolved (status visible to users)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminDashboard.tsx",
+          "operation": "modify",
+          "description": "Replace library management tabs and stats with agriculture content management tabs for Crop Advisories, Mandi Prices, Government Schemes, and Expert Queries (review/respond). Use existing shadcn/ui Tabs/Card components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/CropAdvisoriesManagement.tsx",
+          "operation": "create",
+          "description": "Admin CRUD UI for crop advisories (create/edit/delete) using agriculture React Query hooks. Use shadcn/ui Dialog, Input/Textarea, Button, Table/Card patterns (do not edit frontend/src/components/ui). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/MandiPricesManagement.tsx",
+          "operation": "create",
+          "description": "Admin CRUD UI for mandi prices (create/edit/delete) using agriculture React Query hooks, including location/crop/price fields. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/GovernmentSchemesManagement.tsx",
+          "operation": "create",
+          "description": "Admin CRUD UI for schemes (create/edit/delete) with list + edit dialog and scheme detail preview. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/ExpertQueriesManagement.tsx",
+          "operation": "create",
+          "description": "Admin workflow UI to view expert queries, inspect attachment (image), respond, and mark resolved if supported by backend data; ensure response status is visible to users. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add English/Hindi multilingual UI with language selector and persistent preference (local cache + save to user profile when authenticated).",
+      "acceptanceCriteria": [
+        "Language selector is available and switching language updates visible UI strings immediately.",
+        "Selected language persists across refreshes and sign-in/out (local cache) and is saved to the user's backend profile when authenticated.",
+        "At minimum, primary navigation/module titles, key buttons, and empty/error states are translated for English and Hindi."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/i18n/strings.ts",
+          "operation": "create",
+          "description": "Add an English/Hindi translation dictionary for primary navigation/module titles, key buttons, and common empty/error states. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/i18n/I18nProvider.tsx",
+          "operation": "create",
+          "description": "Create a lightweight i18n context/provider exposing current language, translator helper, and setter; initialize from localStorage and allow runtime switching. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useLanguagePreference.ts",
+          "operation": "create",
+          "description": "Create a hook that persists language to localStorage and, when authenticated with a loaded profile, updates the backend profile preferredLanguage via existing profile mutation (without modifying immutable auth hooks). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Wrap the app in the new I18nProvider so language changes propagate instantly across the UI. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Add a language selector (English/Hindi) that uses the i18n context and persists selection; ensure nav labels use translated strings. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "operation": "modify",
+          "description": "Update profile setup to capture farmer fields required by backend profile (name, location, land size, preferred language) and to initialize the i18n preference; ensure all visible strings are translatable. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PublicHome.tsx",
+          "operation": "modify",
+          "description": "Replace hard-coded module labels/buttons/empty states with i18n lookups (English/Hindi). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/AdminDashboard.tsx",
+          "operation": "modify",
+          "description": "Replace admin tab labels and key buttons/empty states with i18n lookups (English/Hindi). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add low-bandwidth/offline-friendly caching for module data with an indicator when showing cached data.",
+      "acceptanceCriteria": [
+        "When the app cannot fetch fresh data, it renders the most recently cached data for each module and indicates that cached data is being shown.",
+        "When connectivity returns, the UI refreshes to show current data and clears the offline indicator.",
+        "Caching does not require any changes to immutable auth hooks; it is implemented in page/components and/or new hooks."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/offlineCache.ts",
+          "operation": "create",
+          "description": "Create a small localStorage-based cache helper for module payloads (set/get with timestamps) and a standard error-to-offline-state mapper. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/OfflineIndicator.tsx",
+          "operation": "create",
+          "description": "Create a reusable 'Offline / Showing cached data' banner component that can be displayed per module or globally when any module falls back to cached data. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/WeatherModule.tsx",
+          "operation": "modify",
+          "description": "Add offline fallback: cache last successful weather load and render cached data + offline indicator on actor/network failure; auto-refresh when calls succeed again. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "operation": "modify",
+          "description": "Add offline fallback for advisory list/detail: cache last successful load and show offline indicator when rendering cached data. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/MandiPricesModule.tsx",
+          "operation": "modify",
+          "description": "Add offline fallback for prices list/detail/comparison: cache last successful load and show offline indicator when rendering cached data. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/GovernmentSchemesModule.tsx",
+          "operation": "modify",
+          "description": "Add offline fallback for schemes list/detail: cache last successful load and show offline indicator when rendering cached data. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement Crop Advisory image upload to attach a photo to an expert query (base64), with size limit and admin viewing support.",
+      "acceptanceCriteria": [
+        "Users can select an image file and submit it alongside an expert query from the Crop Advisory module.",
+        "The submitted query (including attached image data) is persisted by the backend and retrievable by admins.",
+        "Admins can view the image attachment when responding to the query.",
+        "If image size exceeds a defined limit, the UI prevents submission and shows a clear error message."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "operation": "modify",
+          "description": "Add 'Upload Photo' flow when submitting an expert query: accept image file input, enforce a defined size limit (client-side), convert to base64 (or data URL) for submission, and show clear validation errors. Wire to submit expert query mutation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/public/ExpertSupportModule.tsx",
+          "operation": "modify",
+          "description": "Allow submitting expert questions with optional image attachment (reusing the same validation/conversion approach) so the workflow is accessible outside Crop Advisory as well. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/ExpertQueriesManagement.tsx",
+          "operation": "modify",
+          "description": "Render the attached image (when present) in the admin query detail/review UI so admins can view it before responding. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/utils/imageAttachment.ts",
+          "operation": "create",
+          "description": "Add a shared helper for validating image type/size and converting a File to base64/data URL for submission; export constants for the max size used in UI messaging. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Replace library-specific React Query hooks with agriculture-domain hooks aligned to new backend types, then refactor UI to use them.",
+      "acceptanceCriteria": [
+        "No remaining usages of library hooks like useSearchBooks/useGetUpcomingEvents/useGetLibraryInformation in the agriculture UI.",
+        "All new hooks have stable query keys and properly invalidate relevant caches on mutation success.",
+        "Application compiles with updated generated backend types and no dead code paths referencing removed library types."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Remove all library-related queries/mutations and implement agriculture hooks aligned to backend interface: getCropAdvisories/getCropAdvisory + add/update/delete, getMandiPrices/getMandiPrice + add/update/delete, getGovernmentSchemes/getGovernmentScheme + add/update/delete, getSoilReports/getSoilReport + addSoilReport, getExpertQueries/getExpertQuery + submitExpertQuery/respondToExpertQuery, plus role/profile hooks (getCallerUserRole/isCallerAdmin/getCallerUserProfile/saveCallerUserProfile). Ensure stable query keys and correct invalidations. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PublicHome.tsx",
+          "operation": "modify",
+          "description": "Refactor public UI to stop using all library hooks (library info/events/books/contact) and instead use new agriculture hooks for each module. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/AdminDashboard.tsx",
+          "operation": "modify",
+          "description": "Refactor admin dashboard to use new agriculture hooks for stats and management tabs; remove any remaining usage of library hooks. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "operation": "modify",
+          "description": "Update profile mutation payload to match the agriculture UserProfile shape (name, location, landSize, preferredLanguage) and remove library-specific fields (e.g., email/preferences). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/BooksManagement.tsx",
+          "operation": "delete",
+          "description": "Remove unused library admin screen to prevent accidental references and dead code (optional if compilation finds unused imports). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/MembersManagement.tsx",
+          "operation": "delete",
+          "description": "Remove unused library admin screen to prevent accidental references and dead code (optional if compilation finds unused imports). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/BorrowingManagement.tsx",
+          "operation": "delete",
+          "description": "Remove unused library admin screen to prevent accidental references and dead code (optional if compilation finds unused imports). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/EventsManagement.tsx",
+          "operation": "delete",
+          "description": "Remove unused library admin screen to prevent accidental references and dead code (optional if compilation finds unused imports). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/LibrarySettings.tsx",
+          "operation": "delete",
+          "description": "Remove unused library admin screen to prevent accidental references and dead code (optional if compilation finds unused imports). Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T19:35:00.753Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 10,
+    "implemented": 8,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Rebrand the application from a library website into an agriculture-focused website for Indian farmers by updating the public homepage content, navigation labels, and icons to match the new domain (weather, crop advisory, mandi prices, government schemes, soil health, and expert support).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Header.tsx",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/components/Footer.tsx",
+          "frontend/public/assets/generated/farm-hero.dim_1600x900.jpg",
+          "frontend/public/assets/generated/agri-logo.dim_512x512.png",
+          "frontend/public/assets/generated/agri-sections-header.dim_1200x400.png",
+          "frontend/public/assets/generated/farm-hero.dim_800x600.jpg",
+          "frontend/public/assets/generated/farmers-using-app.dim_800x600.jpg"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Header.tsx",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/components/Footer.tsx",
+          "frontend/public/assets/generated/farm-hero.dim_1600x900.jpg",
+          "frontend/public/assets/generated/agri-logo.dim_512x512.png",
+          "frontend/public/assets/generated/agri-sections-header.dim_1200x400.png",
+          "frontend/public/assets/generated/farm-hero.dim_800x600.jpg",
+          "frontend/public/assets/generated/farmers-using-app.dim_800x600.jpg"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Provide a data migration strategy for upgrading from the existing library canister state to the new agriculture schema. If old state cannot be meaningfully migrated, implement a conditional migration that safely resets/initializes new state while preserving authorization/admin setup where possible.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement a coherent visual theme suitable for an agriculture website (earthy greens, soil browns, high-contrast sunlight-readable layout, rounded cards) and apply it consistently across the public site and admin dashboard without changing any read-only UI component sources under frontend/src/components/ui.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/pages/AdminDashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/pages/AdminDashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add public-facing modules/pages (or sections) for: Weather (current + 7-day), Crop Advisory (crop selection + step-by-step guidance), Mandi Prices (daily prices + comparison view), Government Schemes (list + details), Soil Health (store and view soil test records), and Expert Support (submit questions with optional attachments).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/components/public/WeatherModule.tsx",
+          "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "frontend/src/components/public/MandiPricesModule.tsx",
+          "frontend/src/components/public/GovernmentSchemesModule.tsx",
+          "frontend/src/components/public/SoilHealthModule.tsx",
+          "frontend/src/components/public/ExpertSupportModule.tsx",
+          "frontend/src/components/Header.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/components/public/WeatherModule.tsx",
+          "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "frontend/src/components/public/MandiPricesModule.tsx",
+          "frontend/src/components/public/GovernmentSchemesModule.tsx",
+          "frontend/src/components/public/SoilHealthModule.tsx",
+          "frontend/src/components/public/ExpertSupportModule.tsx",
+          "frontend/src/components/Header.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Replace the current library-oriented backend models and APIs with agriculture-domain models and CRUD/query endpoints for: farmer profile (location, land size, preferred language), crops/advisories, mandi prices, government schemes, soil reports, and expert queries. Ensure authorization rules are appropriate (public read for informational content; authenticated users for submitting soil reports and expert queries; admin-only for content management).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Update the admin dashboard to manage agriculture content instead of library entities, including CRUD screens for crop advisories, mandi prices, government schemes, and review/response workflow for expert queries submitted by users.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AdminDashboard.tsx",
+          "frontend/src/components/admin/CropAdvisoriesManagement.tsx",
+          "frontend/src/components/admin/MandiPricesManagement.tsx",
+          "frontend/src/components/admin/GovernmentSchemesManagement.tsx",
+          "frontend/src/components/admin/ExpertQueriesManagement.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AdminDashboard.tsx",
+          "frontend/src/components/admin/CropAdvisoriesManagement.tsx",
+          "frontend/src/components/admin/MandiPricesManagement.tsx",
+          "frontend/src/components/admin/GovernmentSchemesManagement.tsx",
+          "frontend/src/components/admin/ExpertQueriesManagement.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Implement multilingual support for English and Hindi with a language selector and persistent preference (store in the authenticated user's profile and also cache locally for quick load). Ensure all core public module labels and key UI strings have translations.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/i18n/strings.ts",
+          "frontend/src/i18n/I18nProvider.tsx",
+          "frontend/src/hooks/useLanguagePreference.ts",
+          "frontend/src/main.tsx",
+          "frontend/src/components/Header.tsx",
+          "frontend/src/components/ProfileSetupModal.tsx",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/pages/AdminDashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/i18n/strings.ts",
+          "frontend/src/i18n/I18nProvider.tsx",
+          "frontend/src/hooks/useLanguagePreference.ts",
+          "frontend/src/components/Header.tsx",
+          "frontend/src/components/ProfileSetupModal.tsx",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/pages/AdminDashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Add low-bandwidth/offline-friendly behavior on the frontend: cache the last successfully loaded module data in local storage (or equivalent client storage) and show an 'Offline / Showing cached data' indicator when network/actor calls fail; allow users to view cached weather/advisories/prices/schemes while offline.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/offlineCache.ts",
+          "frontend/src/components/OfflineIndicator.tsx",
+          "frontend/src/components/public/WeatherModule.tsx",
+          "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "frontend/src/components/public/MandiPricesModule.tsx",
+          "frontend/src/components/public/GovernmentSchemesModule.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/offlineCache.ts",
+          "frontend/src/components/OfflineIndicator.tsx",
+          "frontend/src/components/public/WeatherModule.tsx",
+          "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "frontend/src/components/public/MandiPricesModule.tsx",
+          "frontend/src/components/public/GovernmentSchemesModule.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Implement a disease identification workflow as a user-facing 'Upload Photo' feature within Crop Advisory that allows attaching an image to an expert query (for manual review), storing the image as frontend-provided data (e.g., base64) associated with the query in the backend, and displaying it to admins for response.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "frontend/src/components/public/ExpertSupportModule.tsx",
+          "frontend/src/components/admin/ExpertQueriesManagement.tsx",
+          "frontend/src/utils/imageAttachment.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/public/CropAdvisoryModule.tsx",
+          "frontend/src/components/public/ExpertSupportModule.tsx",
+          "frontend/src/components/admin/ExpertQueriesManagement.tsx",
+          "frontend/src/utils/imageAttachment.ts"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Update React Query hooks (frontend/src/hooks/useQueries.ts) to remove library-specific queries/mutations and replace them with agriculture-domain hooks aligned with the new backend APIs, then refactor pages/components to use the new hooks.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/pages/AdminDashboard.tsx",
+          "frontend/src/components/ProfileSetupModal.tsx",
+          "frontend/src/components/admin/BooksManagement.tsx",
+          "frontend/src/components/admin/MembersManagement.tsx",
+          "frontend/src/components/admin/BorrowingManagement.tsx",
+          "frontend/src/components/admin/EventsManagement.tsx",
+          "frontend/src/components/admin/LibrarySettings.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/PublicHome.tsx",
+          "frontend/src/pages/AdminDashboard.tsx",
+          "frontend/src/components/ProfileSetupModal.tsx",
+          "frontend/src/components/admin/BooksManagement.tsx",
+          "frontend/src/components/admin/MembersManagement.tsx",
+          "frontend/src/components/admin/BorrowingManagement.tsx",
+          "frontend/src/components/admin/EventsManagement.tsx",
+          "frontend/src/components/admin/LibrarySettings.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/frontend/canister.yaml",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/agri-logo.dim_512x512.png",
+    "frontend/public/assets/generated/agri-sections-header.dim_1200x400.png",
+    "frontend/public/assets/generated/farm-hero.dim_1600x900.jpg",
+    "frontend/public/assets/generated/farm-hero.dim_800x600.jpg",
+    "frontend/public/assets/generated/farmers-using-app.dim_800x600.jpg",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/components/OfflineIndicator.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/admin/BooksManagement.tsx",
+    "frontend/src/components/admin/BorrowingManagement.tsx",
+    "frontend/src/components/admin/CropAdvisoriesManagement.tsx",
+    "frontend/src/components/admin/EventsManagement.tsx",
+    "frontend/src/components/admin/ExpertQueriesManagement.tsx",
+    "frontend/src/components/admin/GovernmentSchemesManagement.tsx",
+    "frontend/src/components/admin/LibrarySettings.tsx",
+    "frontend/src/components/admin/MandiPricesManagement.tsx",
+    "frontend/src/components/admin/MembersManagement.tsx",
+    "frontend/src/components/public/CropAdvisoryModule.tsx",
+    "frontend/src/components/public/ExpertSupportModule.tsx",
+    "frontend/src/components/public/GovernmentSchemesModule.tsx",
+    "frontend/src/components/public/MandiPricesModule.tsx",
+    "frontend/src/components/public/SoilHealthModule.tsx",
+    "frontend/src/components/public/WeatherModule.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useLanguagePreference.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/i18n/I18nProvider.tsx",
+    "frontend/src/i18n/strings.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/AdminDashboard.tsx",
+    "frontend/src/pages/PublicHome.tsx",
+    "frontend/src/utils/imageAttachment.ts",
+    "frontend/src/utils/offlineCache.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
